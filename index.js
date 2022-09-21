@@ -17,7 +17,17 @@ function maxClass() {
   let result = Array.from(wrapper.children).reduce((acc, curr) => {
     return acc?.classList?.length > curr.classList.length ? acc : curr;
   }, {});
-  return [result.nodeName, result.classList.length];
+
+  let total = Array.from(wrapper.children).reduce((acc, curr) => {
+    acc += curr.classList.length;
+    return acc;
+  }, 0);
+
+  return {
+    result: result.nodeName,
+    resultmax: result.classList.length,
+    totalclasses: total,
+  };
 }
 
 console.log("wrapper element with max classes is:", maxClass());
